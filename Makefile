@@ -21,6 +21,7 @@ dist:
 	$(RM) -r -- $(PACKAGE)-$(VERSION)
 	$(LN) -s -- . $(PACKAGE)-$(VERSION)
 	@$(TAR) $(PACKAGE)-$(VERSION).tar.gz -- \
+		$(PACKAGE)-$(VERSION)/data/DeforaOS-d-black.svg \
 		$(PACKAGE)-$(VERSION)/data/DeforaOS-logo.svg \
 		$(PACKAGE)-$(VERSION)/data/DeforaOS-logo-black.svg \
 		$(PACKAGE)-$(VERSION)/data/Makefile \
