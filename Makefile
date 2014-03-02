@@ -1,6 +1,6 @@
 PACKAGE	= DeforaOS-Artwork
 VERSION	= 0.0.0
-SUBDIRS	= data
+SUBDIRS	= data src
 RM	= rm -f
 LN	= ln -f
 TAR	= tar -czvf
@@ -26,6 +26,9 @@ dist:
 		$(PACKAGE)-$(VERSION)/data/DeforaOS-logo-black.svg \
 		$(PACKAGE)-$(VERSION)/data/Makefile \
 		$(PACKAGE)-$(VERSION)/data/project.conf \
+		$(PACKAGE)-$(VERSION)/src/convert.sh \
+		$(PACKAGE)-$(VERSION)/src/Makefile \
+		$(PACKAGE)-$(VERSION)/src/project.conf \
 		$(PACKAGE)-$(VERSION)/Makefile \
 		$(PACKAGE)-$(VERSION)/project.conf
 	$(RM) -- $(PACKAGE)-$(VERSION)
