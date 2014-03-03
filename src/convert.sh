@@ -25,9 +25,13 @@
 
 
 #variables
+PREFIX="/usr/local"
+[ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
-MKDIR="mkdir -p"
+DEBUG="_debug"
+INSTALL="install -m 0644"
+MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
 
 
@@ -40,12 +44,11 @@ _convert()
 	folder="$theme/$size"
 	shift 2
 
-	$MKDIR "$folder/places"
-	$CONVERT -background none -density 300 \
+	$DEBUG $MKDIR "$folder/places"
+	$DEBUG $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-black.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
-	return 0
 }
 
 
@@ -56,28 +59,66 @@ _clean()
 	size="${2}x${2}"
 	folder="$theme/$size"
 
-	$RM -- "$folder/places/start-here.png"			|| return 2
-	return 0
+	$DEBUG $RM -- "$folder/places/start-here.png"		|| return 2
+}
+
+
+#debug
+_debug()
+{
+	echo "$@" 1>&2
+	"$@"
+}
+
+
+#install
+_install()
+{
+	target="$1"
+	instdir="${target%/*}"
+
+	$DEBUG $MKDIR -- "$PREFIX/$instdir"			|| return 2
+	$DEBUG $INSTALL "$target" "$PREFIX/$target"		|| return 2
+}
+
+
+#uninstall
+_uninstall()
+{
+	target="$1"
+	instdir="${target%/*}"
+
+	$DEBUG $RM "$PREFIX/$target"				|| return 2
 }
 
 
 #usage
 _usage()
 {
-	echo "Usage: convert.sh [-c][-P prefix] target..." 1>&2
+	echo "Usage: convert.sh [-c|-i|-u][-P prefix] target..." 1>&2
 	return 1
 }
 
 
 #main
 clean=0
-while getopts "cP:" name; do
+install=0
+uninstall=0
+while getopts "ciuP:" name; do
 	case "$name" in
 		c)
 			clean=1
 			;;
+		i)
+			install=1
+			uninstall=0
+			;;
+		u)
+			install=0
+			uninstall=1
+			;;
 		P)
-			#we can ignore it
+			PREFIX="$OPTARG"
 			;;
 		?)
 			_usage
@@ -104,6 +145,18 @@ while [ $# -gt 0 ]; do
 	#clean
 	if [ $clean -ne 0 ]; then
 		_clean "$theme" "$size"				|| exit 2
+		continue
+	fi
+
+	#uninstall
+	if [ $uninstall -eq 1 ]; then
+		_uninstall "$target"				|| exit 2
+		continue
+	fi
+
+	#install
+	if [ $install -eq 1 ]; then
+		_install "$target"				|| exit 2
 		continue
 	fi
 

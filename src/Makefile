@@ -35,7 +35,19 @@ distclean: clean
 	$(RM) -- $(TARGETS)
 
 install: $(TARGETS)
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/16x16/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/22x22/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/24x24/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/32x32/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/48x48/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/256x256/places/start-here.png"
 
 uninstall:
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/16x16/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/22x22/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/24x24/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/32x32/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/48x48/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/256x256/places/start-here.png"
 
 .PHONY: all clean distclean install uninstall
