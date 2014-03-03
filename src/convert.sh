@@ -79,6 +79,7 @@ _index()
 
 	echo "[Icon Theme]"
 	echo "Name=$theme"
+	echo "Comment=$theme icon theme"
 	echo "Example=start-here"
 
 	echo -n "Directories="
