@@ -1,4 +1,4 @@
-TARGETS	= DeforaOS/16x16/places/start-here.png DeforaOS/22x22/places/start-here.png DeforaOS/24x24/places/start-here.png DeforaOS/32x32/places/start-here.png DeforaOS/48x48/places/start-here.png DeforaOS/256x256/places/start-here.png
+TARGETS	= DeforaOS/16x16/places/start-here.png DeforaOS/22x22/places/start-here.png DeforaOS/24x24/places/start-here.png DeforaOS/32x32/places/start-here.png DeforaOS/48x48/places/start-here.png DeforaOS/256x256/places/start-here.png DeforaOS/index.theme
 PREFIX	= /usr/local
 DESTDIR	=
 RM	= rm -f
@@ -27,9 +27,12 @@ DeforaOS/48x48/places/start-here.png:
 DeforaOS/256x256/places/start-here.png:
 	./convert.sh -P "$(PREFIX)" -- "DeforaOS/256x256/places/start-here.png"
 
+DeforaOS/index.theme:
+	./convert.sh -P "$(PREFIX)" -- "DeforaOS/index.theme"
+
 clean:
-	$(RM) -- $(DeforaOS/16x16/places/start-here.png_OBJS) $(DeforaOS/22x22/places/start-here.png_OBJS) $(DeforaOS/24x24/places/start-here.png_OBJS) $(DeforaOS/32x32/places/start-here.png_OBJS) $(DeforaOS/48x48/places/start-here.png_OBJS) $(DeforaOS/256x256/places/start-here.png_OBJS)
-	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/256x256/places/start-here.png"
+	$(RM) -- $(DeforaOS/16x16/places/start-here.png_OBJS) $(DeforaOS/22x22/places/start-here.png_OBJS) $(DeforaOS/24x24/places/start-here.png_OBJS) $(DeforaOS/32x32/places/start-here.png_OBJS) $(DeforaOS/48x48/places/start-here.png_OBJS) $(DeforaOS/256x256/places/start-here.png_OBJS) $(DeforaOS/index.theme_OBJS)
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/index.theme"
 
 distclean: clean
 	$(RM) -- $(TARGETS)

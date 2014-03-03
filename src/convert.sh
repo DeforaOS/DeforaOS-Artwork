@@ -30,6 +30,7 @@ PREFIX="/usr/local"
 #executables
 CONVERT="convert -quiet"
 DEBUG="_debug"
+FIND="find"
 INSTALL="install -m 0644"
 MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
@@ -68,6 +69,47 @@ _debug()
 {
 	echo "$@" 1>&2
 	"$@"
+}
+
+
+#index
+_index()
+{
+	theme="$1"
+
+	echo "[Icon Theme]"
+	echo "Name=$theme"
+	echo "Example=start-here"
+
+	echo -n "Directories="
+	sep=
+	$FIND "$theme" -type d | while read folder; do
+		theme="${folder%%/*}"
+		size="${folder#*/}"
+		size="${size%%/*}"
+		size="${size%%x*}"
+		basename="${folder##*/}"
+
+		[ "$basename" = "places" ] || continue
+		echo -n "$sep$folder"
+		sep=","
+	done
+	echo ""
+
+	$FIND "$theme" -type d | while read folder; do
+		theme="${folder%%/*}"
+		size="${folder#*/}"
+		size="${size%%/*}"
+		size="${size%%x*}"
+		basename="${folder##*/}"
+
+		[ "$basename" = "places" ] || continue
+		echo ""
+		echo "[${size}x${size}/$basename]"
+		echo "Size=$size"
+		echo "Context=Places"
+		echo "Type=Fixed"
+	done
 }
 
 
@@ -141,6 +183,7 @@ while [ $# -gt 0 ]; do
 	size="${target#*/}"
 	size="${size%%/*}"
 	size="${size%%x*}"
+	filename="${target##*/}"
 
 	#clean
 	if [ $clean -ne 0 ]; then
@@ -161,5 +204,9 @@ while [ $# -gt 0 ]; do
 	fi
 
 	#create
-	_convert "$theme" "$size"				|| exit 2
+	if [ "$filename" = "index.theme" ]; then
+		_index "$theme" > "$theme/index.theme"		|| exit 2
+	else
+		_convert "$theme" "$size"			|| exit 2
+	fi
 done
