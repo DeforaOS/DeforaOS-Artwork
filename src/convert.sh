@@ -41,7 +41,8 @@ _convert()
 	shift 2
 
 	$MKDIR "$folder/places"
-	$CONVERT "../data/DeforaOS-d-black.svg" \
+	$CONVERT -transparent "white" \
+		"../data/DeforaOS-d-black.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
 	return 0
