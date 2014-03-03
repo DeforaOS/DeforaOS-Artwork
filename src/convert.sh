@@ -25,8 +25,6 @@
 
 
 #variables
-SIZES="16 22 24 32 48 256"
-THEME="DeforaOS"
 #executables
 CONVERT="convert -quiet"
 MKDIR="mkdir -p"
@@ -37,15 +35,15 @@ RM="rm -f"
 #convert
 _convert()
 {
-	for i in $SIZES; do
-		size="${i}x${i}"
-		folder="$THEME/$size"
+	theme="$1"
+	size="${2}x${2}"
+	folder="$theme/$size"
+	shift 2
 
-		$MKDIR "$folder/places"
-		$CONVERT "../data/DeforaOS-d-black.svg" \
-			-resize "$size" $@ \
-			"$folder/places/start-here.png"		|| return 2
-	done
+	$MKDIR "$folder/places"
+	$CONVERT "../data/DeforaOS-d-black.svg" \
+		-resize "$size" $@ \
+		"$folder/places/start-here.png"			|| return 2
 	return 0
 }
 
@@ -53,15 +51,61 @@ _convert()
 #clean
 _clean()
 {
-	for i in $SIZES; do
-		size="${i}x${i}"
-		folder="$THEME/$size"
+	theme="$1"
+	size="${2}x${2}"
+	folder="$theme/$size"
 
-		$RM -- "$folder/places/start-here.png"		|| return 2
-	done
+	$RM -- "$folder/places/start-here.png"			|| return 2
 	return 0
 }
 
 
+#usage
+_usage()
+{
+	echo "Usage: convert.sh [-c][-P prefix] target..." 1>&2
+	return 1
+}
+
+
 #main
-_convert
+clean=0
+while getopts "cP:" name; do
+	case "$name" in
+		c)
+			clean=1
+			;;
+		P)
+			#we can ignore it
+			;;
+		?)
+			_usage
+			exit $?
+			;;
+	esac
+done
+shift $((OPTIND - 1))
+if [ $# -eq 0 ]; then
+	_usage
+	exit $?
+fi
+
+while [ $# -gt 0 ]; do
+	target="$1"
+	shift
+
+	#determine the argument
+	theme="${target%%/*}"
+	size="${target#*/}"
+	size="${size%%/*}"
+	size="${size%%x*}"
+
+	#clean
+	if [ $clean -ne 0 ]; then
+		_clean "$theme" "$size"				|| exit 2
+		continue
+	fi
+
+	#create
+	_convert "$theme" "$size"				|| exit 2
+done
