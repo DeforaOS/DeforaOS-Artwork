@@ -44,6 +44,7 @@ install: $(TARGETS)
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/32x32/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/48x48/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/256x256/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "DeforaOS/index.theme"
 
 uninstall:
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/16x16/places/start-here.png"
@@ -52,5 +53,6 @@ uninstall:
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/32x32/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/48x48/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/256x256/places/start-here.png"
+	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/index.theme"
 
 .PHONY: all clean distclean install uninstall
