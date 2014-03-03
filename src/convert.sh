@@ -59,6 +59,9 @@ _convert()
 		"$folder/places/start-here.png"			|| return 2
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
+		dirname="${stock%/*}"
+
+		$DEBUG $MKDIR "$folder/$dirname"
 		echo "push graphic-context
 	viewbox 0 0 256 256
 	push graphic-context
@@ -71,9 +74,9 @@ _convert()
 		font-size 224
 		text 32,196 '$char'
 	pop graphic-context
-pop graphic-context" | $CONVERT -background none - \
+pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
-		"$folder/places/${stock}.png"
+		"$folder/${stock}.png"
 	done
 }
 
@@ -142,10 +145,23 @@ _index()
 _install()
 {
 	target="$1"
-	instdir="${target%/*}"
+	size="$2"
+	dirname="${target%/*}"
+	instdir="${target%%/*}"
 
-	$DEBUG $MKDIR -- "$PREFIX/$instdir"			|| return 2
+	$DEBUG $MKDIR -- "$PREFIX/$dirname"			|| return 2
 	$DEBUG $INSTALL "$target" "$PREFIX/$target"		|| return 2
+	[ -z "$size" ] && return 0
+	echo "$ICONS" | while read char stock; do
+		[ -z "$char" ] && continue
+		dirname="${stock%/*}"
+
+		$DEBUG $MKDIR -- "$PREFIX/$instdir/${size}x${size}/$dirname" \
+								|| return 2
+		$DEBUG $INSTALL "$instdir/${size}x${size}/${stock}.png" \
+			"$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+								|| return 2
+	done
 }
 
 
@@ -153,9 +169,17 @@ _install()
 _uninstall()
 {
 	target="$1"
+	size="$2"
 	instdir="${target%/*}"
 
 	$DEBUG $RM "$PREFIX/$target"				|| return 2
+	[ -z "$size" ] && return 0
+	echo "$ICONS" | while read char stock; do
+		[ -z "$char" ] && continue
+
+		$DEBUG $RM "$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+								|| return 2
+	done
 }
 
 
@@ -218,13 +242,21 @@ while [ $# -gt 0 ]; do
 
 	#uninstall
 	if [ $uninstall -eq 1 ]; then
-		_uninstall "$target"				|| exit 2
+		if [ "$filename" = "index.theme" ]; then
+			_uninstall "$target"			|| exit 2
+		else
+			_uninstall "$target" "$size"		|| exit 2
+		fi
 		continue
 	fi
 
 	#install
 	if [ $install -eq 1 ]; then
-		_install "$target"				|| exit 2
+		if [ "$filename" = "index.theme" ]; then
+			_install "$target"			|| exit 2
+		else
+			_install "$target" "$size"		|| exit 2
+		fi
 		continue
 	fi
 
