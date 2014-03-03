@@ -26,12 +26,12 @@
 
 #variables
 ICONS="
-←	go-previous
-↑	go-up
-→	go-next
-↓	go-down
-⏏	eject
-⨯	process-stop"
+←	actions/go-previous
+↑	actions/go-up
+→	actions/go-next
+↓	actions/go-down
+⏏	actions/eject
+⨯	actions/process-stop"
 PREFIX="/usr/local"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
