@@ -84,14 +84,13 @@ _index()
 	echo -n "Directories="
 	sep=
 	$FIND "$theme" -type d | while read folder; do
-		theme="${folder%%/*}"
 		size="${folder#*/}"
 		size="${size%%/*}"
 		size="${size%%x*}"
 		basename="${folder##*/}"
 
 		[ "$basename" = "places" ] || continue
-		echo -n "$sep$folder"
+		echo -n "$sep${size}x${size}/$basename"
 		sep=","
 	done
 	echo ""
