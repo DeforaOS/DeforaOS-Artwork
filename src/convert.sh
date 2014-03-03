@@ -25,6 +25,13 @@
 
 
 #variables
+ICONS="
+←	go-previous
+↑	go-up
+→	go-next
+↓	go-down
+⏏	eject
+⨯	process-stop"
 PREFIX="/usr/local"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
@@ -50,6 +57,24 @@ _convert()
 		"../data/DeforaOS-d-black.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
+	echo "$ICONS" | while read char stock; do
+		[ -z "$char" ] && continue
+		echo "push graphic-context
+	viewbox 0 0 256 256
+	push graphic-context
+		fill 'black'
+		circle 128,128 127,255
+	pop graphic-context
+	push graphic-context
+		fill 'white'
+		font-family 'DejaVu Sans'
+		font-size 224
+		text 32,196 '$char'
+	pop graphic-context
+pop graphic-context" | $CONVERT -background none - \
+		-resize "$size" $@ \
+		"$folder/places/${stock}.png"
+	done
 }
 
 
