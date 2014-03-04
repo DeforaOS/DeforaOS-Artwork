@@ -26,19 +26,26 @@
 
 #variables
 ICONS="
-←	actions/go-previous
-↑	actions/go-up
-→	actions/go-next
-↓	actions/go-down
-⏏	actions/eject
-⨯	actions/process-stop"
+←		actions/go-previous
+↑		actions/go-up
+→		actions/go-next
+↓		actions/go-down
+⏏		actions/eject
+⨯		actions/process-stop"
 PREFIX="/usr/local"
+SYMLINKS="
+go-previous	actions/back
+go-previous	actions/gtk-go-back-ltr
+go-previous	actions/gtk-go-forward-rtl
+go-previous	actions/previous
+go-previous	actions/stock_left"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
 DEBUG="_debug"
 FIND="find"
 INSTALL="install -m 0644"
+LN="ln -f"
 MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
 
@@ -57,6 +64,8 @@ _convert()
 		"../data/DeforaOS-d-black.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
+
+	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 		dirname="${stock%/*}"
@@ -77,6 +86,13 @@ _convert()
 pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
 		"$folder/${stock}.png"				|| return 2
+	done
+
+	#symlinks
+	echo "$SYMLINKS" | while read from to; do
+		[ -z "$from" ] && continue
+
+		$DEBUG $LN -s "${from}.png" "$folder/${to}.png"	|| return 2
 	done
 }
 
