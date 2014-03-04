@@ -136,23 +136,21 @@ _index()
 	$FIND "$theme" -type d | while read folder; do
 		size="${folder#*/}"
 		size="${size%%/*}"
-		size="${size%%x*}"
 		basename="${folder##*/}"
 
-		[ "$basename" = "places" ] || continue
-		echo -n "$sep${size}x${size}/$basename"
+		[ "$size" != "$basename" ] || continue
+		echo -n "$sep${size}/$basename"
 		sep=","
 	done
 	echo ""
 
 	$FIND "$theme" -type d | while read folder; do
-		theme="${folder%%/*}"
 		size="${folder#*/}"
 		size="${size%%/*}"
-		size="${size%%x*}"
 		basename="${folder##*/}"
 
-		[ "$basename" = "places" ] || continue
+		[ "$size" != "$basename" ] || continue
+		size="${size%x*}"
 		echo ""
 		echo "[${size}x${size}/$basename]"
 		echo "Size=$size"
