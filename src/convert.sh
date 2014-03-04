@@ -67,7 +67,7 @@ _convert()
 
 	$DEBUG $MKDIR "$folder/places"
 	$DEBUG $CONVERT -background none -density 300 \
-		"../data/DeforaOS-d-$COLOR" \
+		"../data/DeforaOS-d-${COLOR}.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
 
