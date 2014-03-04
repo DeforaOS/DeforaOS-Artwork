@@ -34,6 +34,11 @@ ICONS="
 ⨯		actions/process-stop"
 PREFIX="/usr/local"
 SYMLINKS="
+go-next		actions/forward
+go-next		actions/gtk-go-back-rtl
+go-next		actions/gtk-go-forward-ltr
+go-next		actions/next
+go-next		actions/stock_right
 go-previous	actions/back
 go-previous	actions/gtk-go-back-ltr
 go-previous	actions/gtk-go-forward-rtl
