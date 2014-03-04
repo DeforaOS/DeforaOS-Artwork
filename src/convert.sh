@@ -127,6 +127,7 @@ _index()
 {
 	theme="$1"
 
+	#icon theme
 	echo "[Icon Theme]"
 	echo "Name=$theme"
 	echo "Comment=$theme icon theme"
@@ -145,6 +146,7 @@ _index()
 	done
 	echo ""
 
+	#directories
 	$FIND "$theme" -type d | while read folder; do
 		size="${folder#*/}"
 		size="${size%%/*}"
@@ -172,6 +174,8 @@ _install()
 	$DEBUG $MKDIR -- "$PREFIX/$dirname"			|| return 2
 	$DEBUG $INSTALL "$target" "$PREFIX/$target"		|| return 2
 	[ -z "$size" ] && return 0
+
+	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 		dirname="${stock%/*}"
@@ -182,6 +186,15 @@ _install()
 			"$PREFIX/$instdir/${size}x${size}/${stock}.png" \
 								|| return 2
 	done
+
+	#symlinks
+	echo "$SYMLINKS" | while read from to; do
+		[ -z "$from" ] && continue
+
+		$DEBUG $LN -s "${from}.png" \
+			"$PREFIX/$instdir/${size}x${size}/${to}.png" \
+								|| return 2
+	done
 }
 
 
@@ -190,14 +203,24 @@ _uninstall()
 {
 	target="$1"
 	size="$2"
-	instdir="${target%/*}"
+	instdir="${target%%/*}"
 
 	$DEBUG $RM "$PREFIX/$target"				|| return 2
 	[ -z "$size" ] && return 0
+
+	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 
 		$DEBUG $RM "$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+								|| return 2
+	done
+
+	#symlinks
+	echo "$SYMLINKS" | while read from to; do
+		[ -z "$from" ] && continue
+
+		$DEBUG $RM "$PREFIX/$instdir/${size}x${size}/${to}.png" \
 								|| return 2
 	done
 }
