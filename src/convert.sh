@@ -45,7 +45,7 @@ go-previous	actions/gtk-go-back-ltr
 go-previous	actions/gtk-go-forward-rtl
 go-previous	actions/previous
 go-previous	actions/stock_left
-media-eject	player_eject"
+media-eject	actions/player_eject"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
