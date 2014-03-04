@@ -28,12 +28,15 @@
 BGCOLOR="black"
 FGCOLOR="white"
 ICONS="
+↓		actions/go-down
+→		actions/go-next
 ←		actions/go-previous
 ↑		actions/go-up
-→		actions/go-next
-↓		actions/go-down
 ⏏		actions/media-eject
-⨯		actions/process-stop"
+⨯		actions/process-stop
++		actions/zoom-in
+1		actions/zoom-original
+-		actions/zoom-out"
 PREFIX="/usr/local"
 SYMLINKS="
 go-next		actions/forward
@@ -46,7 +49,13 @@ go-previous	actions/gtk-go-back-ltr
 go-previous	actions/gtk-go-forward-rtl
 go-previous	actions/previous
 go-previous	actions/stock_left
-media-eject	actions/player_eject"
+media-eject	actions/player_eject
+zoom-in		actions/gtk-zoom-in
+zoom-original	actions/gtk-zoom-100
+zoom-out	actions/gtk-zoom-out
+zoom-in		actions/stock_zoom-in
+zoom-original	actions/stock_zoom-1
+zoom-out	actions/stock_zoom-out"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
