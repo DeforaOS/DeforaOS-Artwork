@@ -76,7 +76,7 @@ _convert()
 	pop graphic-context
 pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
-		"$folder/${stock}.png"
+		"$folder/${stock}.png"				|| return 2
 	done
 }
 
