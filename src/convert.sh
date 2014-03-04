@@ -31,7 +31,7 @@ ICONS="
 ↑		actions/go-up
 →		actions/go-next
 ↓		actions/go-down
-⏏		actions/eject
+⏏		actions/media-eject
 ⨯		actions/process-stop"
 PREFIX="/usr/local"
 SYMLINKS="
@@ -44,7 +44,8 @@ go-previous	actions/back
 go-previous	actions/gtk-go-back-ltr
 go-previous	actions/gtk-go-forward-rtl
 go-previous	actions/previous
-go-previous	actions/stock_left"
+go-previous	actions/stock_left
+media-eject	player_eject"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
