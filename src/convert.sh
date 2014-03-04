@@ -25,7 +25,8 @@
 
 
 #variables
-COLOR="black"
+BGCOLOR="black"
+FGCOLOR="white"
 ICONS="
 ←		actions/go-previous
 ↑		actions/go-up
@@ -68,7 +69,7 @@ _convert()
 
 	$DEBUG $MKDIR "$folder/places"
 	$DEBUG $CONVERT -background none -density 300 \
-		"../data/DeforaOS-d-${COLOR}.svg" \
+		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$size" $@ \
 		"$folder/places/start-here.png"			|| return 2
 
@@ -81,11 +82,11 @@ _convert()
 		echo "push graphic-context
 	viewbox 0 0 256 256
 	push graphic-context
-		fill '$COLOR'
+		fill '$BGCOLOR'
 		circle 128,128 127,255
 	pop graphic-context
 	push graphic-context
-		fill 'white'
+		fill '$FGCOLOR'
 		font-family 'DejaVu Sans'
 		font-size 224
 		text 32,196 '$char'
