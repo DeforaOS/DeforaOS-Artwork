@@ -28,6 +28,7 @@
 BGCOLOR="black"
 FGCOLOR="white"
 ICONS="
+ø		actions/edit-clear
 ↓		actions/go-down
 →		actions/go-next
 ←		actions/go-previous
@@ -39,6 +40,8 @@ ICONS="
 -		actions/zoom-out"
 PREFIX="/usr/local"
 SYMLINKS="
+edit-clear	actions/editclear
+edit-clear	actions/gtk-clear
 go-next		actions/forward
 go-next		actions/gtk-go-back-rtl
 go-next		actions/gtk-go-forward-ltr
