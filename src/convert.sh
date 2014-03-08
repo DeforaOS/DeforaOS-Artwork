@@ -34,6 +34,8 @@ ICONS="
 ←		actions/go-previous
 ↑		actions/go-up
 ⏏		actions/media-eject
+►		actions/media-playback-start
+■		actions/media-playback-stop
 ⨯		actions/process-stop
 +		actions/zoom-in
 1		actions/zoom-original
@@ -53,6 +55,15 @@ go-previous	actions/gtk-go-forward-rtl
 go-previous	actions/previous
 go-previous	actions/stock_left
 media-eject	actions/player_eject
+media-playback-start	actions/gtk-media-play-ltr
+media-playback-start	actions/player_play
+media-playback-start	actions/stock_media-play
+media-playback-stop	actions/gtk-media-stop
+media-playback-stop	actions/player_stop
+process-stop	actions/gtk-cancel
+process-stop	actions/gtk-stop
+process-stop	actions/stock_stop
+process-stop	actions/stop
 zoom-in		actions/gtk-zoom-in
 zoom-original	actions/gtk-zoom-100
 zoom-out	actions/gtk-zoom-out
