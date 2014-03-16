@@ -27,6 +27,7 @@
 #variables
 BGCOLOR="black"
 FGCOLOR="white"
+FONT='DejaVu Sans'
 ICONS="
 ø		actions/edit-clear
 ↷		actions/edit-redo
@@ -121,7 +122,7 @@ _convert()
 	pop graphic-context
 	push graphic-context
 		fill '$FGCOLOR'
-		font-family 'DejaVu Sans'
+		font-family '$FONT'
 		font-size 224
 		text 32,196 '$char'
 	pop graphic-context
