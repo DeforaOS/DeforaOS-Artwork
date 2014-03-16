@@ -29,6 +29,8 @@ BGCOLOR="black"
 FGCOLOR="white"
 ICONS="
 ø		actions/edit-clear
+↷		actions/edit-redo
+↶		actions/edit-undo
 ↓		actions/go-down
 →		actions/go-next
 ←		actions/go-previous
@@ -37,6 +39,7 @@ ICONS="
 ►		actions/media-playback-start
 ■		actions/media-playback-stop
 ⨯		actions/process-stop
+↻		actions/view-refresh
 +		actions/zoom-in
 1		actions/zoom-original
 -		actions/zoom-out"
@@ -44,6 +47,12 @@ PREFIX="/usr/local"
 SYMLINKS="
 edit-clear	actions/editclear
 edit-clear	actions/gtk-clear
+edit-redo	actions/gtk-redo-ltr
+edit-redo	actions/redo
+edit-redo	actions/stock_redo
+edit-undo	actions/gtk-undo-ltr
+edit-undo	actions/stock_undo
+edit-undo	actions/undo
 go-next		actions/forward
 go-next		actions/gtk-go-back-rtl
 go-next		actions/gtk-go-forward-ltr
@@ -64,6 +73,8 @@ process-stop	actions/gtk-cancel
 process-stop	actions/gtk-stop
 process-stop	actions/stock_stop
 process-stop	actions/stop
+view-refresh	actions/gtk-refresh
+view-refresh	actions/stock_refresh
 zoom-in		actions/gtk-zoom-in
 zoom-original	actions/gtk-zoom-100
 zoom-out	actions/gtk-zoom-out
