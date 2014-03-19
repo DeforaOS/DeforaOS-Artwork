@@ -29,6 +29,7 @@ BGCOLOR="black"
 FGCOLOR="white"
 FONT='DejaVu Sans'
 ICONS="
+⁂		actions/help-about.png
 ø		actions/edit-clear
 ↷		actions/edit-redo
 ↶		actions/edit-undo
@@ -64,6 +65,8 @@ go-previous	actions/gtk-go-back-ltr
 go-previous	actions/gtk-go-forward-rtl
 go-previous	actions/previous
 go-previous	actions/stock_left
+help-about	actions/gtk-about
+help-about	actions/stock_about
 media-eject	actions/player_eject
 media-playback-start	actions/gtk-media-play-ltr
 media-playback-start	actions/player_play
