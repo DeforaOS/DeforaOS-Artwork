@@ -29,7 +29,7 @@ BGCOLOR="black"
 FGCOLOR="white"
 FONT='DejaVu Sans'
 ICONS="
-⁂		actions/help-about.png
+⁂		actions/help-about
 ø		actions/edit-clear
 ↷		actions/edit-redo
 ↶		actions/edit-undo
