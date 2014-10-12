@@ -32,6 +32,12 @@ DeforaOS/index.theme:
 
 clean:
 	$(RM) -- $(DeforaOS/16x16/places/start-here.png_OBJS) $(DeforaOS/22x22/places/start-here.png_OBJS) $(DeforaOS/24x24/places/start-here.png_OBJS) $(DeforaOS/32x32/places/start-here.png_OBJS) $(DeforaOS/48x48/places/start-here.png_OBJS) $(DeforaOS/256x256/places/start-here.png_OBJS) $(DeforaOS/index.theme_OBJS)
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/16x16/places/start-here.png"
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/22x22/places/start-here.png"
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/24x24/places/start-here.png"
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/32x32/places/start-here.png"
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/48x48/places/start-here.png"
+	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/256x256/places/start-here.png"
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/index.theme"
 
 distclean: clean
