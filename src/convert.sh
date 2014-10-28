@@ -27,24 +27,25 @@
 #variables
 BGCOLOR="black"
 FGCOLOR="white"
-FONT='DejaVu Sans'
+FONT="FontAwesome"
 ICONS="
-⁂		actions/help-about
-ø		actions/edit-clear
-↷		actions/edit-redo
-↶		actions/edit-undo
-↓		actions/go-down
-→		actions/go-next
-←		actions/go-previous
-↑		actions/go-up
-⏏		actions/media-eject
-►		actions/media-playback-start
-■		actions/media-playback-stop
-⨯		actions/process-stop
-↻		actions/view-refresh
-+		actions/zoom-in
-1		actions/zoom-original
--		actions/zoom-out"
+		actions/help-about
+		actions/edit-clear
+		actions/edit-redo
+		actions/edit-undo
+		actions/go-down
+		actions/go-next
+		actions/go-previous
+		actions/go-up
+		actions/media-eject
+		actions/media-playback-pause
+		actions/media-playback-start
+		actions/media-playback-stop
+		actions/process-stop
+		actions/view-refresh
+		actions/zoom-in
+		actions/zoom-original
+		actions/zoom-out"
 PREFIX="/usr/local"
 SYMLINKS="
 edit-clear	actions/editclear
@@ -68,6 +69,9 @@ go-previous	actions/stock_left
 help-about	actions/gtk-about
 help-about	actions/stock_about
 media-eject	actions/player_eject
+media-playback-pause	actions/gtk-media-pause
+media-playback-pause	actions/player_pause
+media-playback-pause	actions/stock_media-pause
 media-playback-start	actions/gtk-media-play-ltr
 media-playback-start	actions/player_play
 media-playback-start	actions/stock_media-play
