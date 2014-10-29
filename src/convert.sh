@@ -81,6 +81,8 @@ ICONS="
 		actions/system-shutdown
 		actions/view-fullscreen
 		actions/view-refresh
+		actions/view-sort-ascending
+		actions/view-sort-descending
 		actions/window-close
 		actions/zoom-in
 		actions/zoom-original
@@ -94,9 +96,11 @@ ICONS="
 		apps/user-info
 		apps/utilities-terminal
 		apps/web-browser
+		categories/applications-development
 		categories/applications-games
 		categories/applications-graphics
 		categories/applications-multimedia
+		categories/applications-office
 		categories/applications-science
 		categories/preferences-desktop
 		devices/audio-input-microphone
@@ -115,6 +119,7 @@ ICONS="
 		mimetypes/image-x-generic
 		mimetypes/x-office-calendar
 		places/folder
+		places/network-workgroup
 		places/user-trash
 		status/audio-volume-muted
 		status/dialog-error
@@ -123,7 +128,10 @@ ICONS="
 		status/dialog-question
 		status/dialog-warning
 		status/folder-open
-		status/mail-attachment"
+		status/image-loading
+		status/mail-attachment
+		status/network-idle
+		status/network-offline"
 PREFIX="/usr/local"
 SYMLINKS="
 accessories-text-editor	apps/kedit
@@ -131,6 +139,9 @@ accessories-text-editor	apps/text-editor
 application-exit	actions/exit
 application-exit	actions/gtk-quit
 application-exit	actions/xfce-system-exit
+applications-development	categories/gnome-devel
+applications-development	categories/package_development
+applications-development	categories/redhat-programming
 applications-games	categories/gnome-joystick
 applications-games	categories/package_games
 applications-games	categories/redhat-games
@@ -143,6 +154,10 @@ applications-multimedia	categories/gnome-multimedia
 applications-multimedia	categories/package_multimedia
 applications-multimedia	categories/redhat-sound_video
 applications-multimedia	categories/xfce-multimedia
+applications-office	categories/gnome-applications
+applications-office	categories/package_office
+applications-office	categories/redhat-office
+applications-office	categories/xfce-office
 appointment-new		actions/appointment
 appointment-new		actions/stock_new-appointment
 audio-input-microphone	devices/gnome-stock-mic
@@ -260,6 +275,7 @@ help-about		actions/gtk-about
 help-about		actions/stock_about
 help-contents		actions/help
 help-contents		actions/stock_help
+image-loading		status/gnome-fs-loading-icon
 image-x-generic		mimetypes/gnome-mime-image
 image-x-generic		mimetypes/image
 input-keyboard		devices/gnome-dev-keyboard
@@ -310,7 +326,19 @@ media-seek-forward	actions/gtk-media-forward-ltr
 media-seek-forward	actions/player_fwd
 media-seek-forward	actions/stock_media-fwd
 modem			devices/gnome-modem
+network-idle		status/connect_established
+network-idle		status/gnome-netstatus-idle
+network-idle		status/nm-adhoc
+network-idle		status/nm-device-wired
+network-idle		status/nm-device-wireless
+network-offline		status/connect_no
+network-offline		status/gnome-netstatus-disconn
+network-offline		status/nm-no-connection
 network-wireless	devices/gnome-dev-wavelan
+network-workgroup	places/gnome-fs-network
+network-workgroup	places/gnome-mime-x-directory-smb-workgroup
+network-workgroup	places/gtk-network
+network-workgroup	places/network_local
 phone			devices/stock_cell-phone
 preferences-desktop	categories/gtk-preferences
 preferences-desktop-accessibility	apps/access
@@ -342,6 +370,7 @@ system-lock-screen	actions/lock
 system-lock-screen	actions/xfce-system-lock
 system-log-out		actions/gnome-logout
 system-run		actions/gnome-run
+system-run		actions/gtk-execute
 system-search		actions/edit-find
 system-search		actions/gnome-searchtool
 system-search		actions/kfind
@@ -368,6 +397,8 @@ view-fullscreen		stock_fullscreen
 view-fullscreen		window_fullscreen
 view-refresh		actions/gtk-refresh
 view-refresh		actions/stock_refresh
+view-sort-ascending	actions/gtk-sort-ascending
+view-sort-descending	actions/gtk-sort-descending
 window-close		actions/gtk-close
 window-close		actions/stock_close
 x-office-calendar	mimetypes/gnome-mime-text-x-vcalendar
@@ -375,11 +406,14 @@ x-office-calendar	mimetypes/plan
 x-office-calendar	mimetypes/stock_calendar
 x-office-calendar	mimetypes/vcalendar
 zoom-in			actions/gtk-zoom-in
-zoom-original		actions/gtk-zoom-100
-zoom-out		actions/gtk-zoom-out
 zoom-in			actions/stock_zoom-in
+zoom-in			actions/viewmag+
+zoom-original		actions/gtk-zoom-100
 zoom-original		actions/stock_zoom-1
-zoom-out		actions/stock_zoom-out"
+zoom-original		actions/viewmag1
+zoom-out		actions/gtk-zoom-out
+zoom-out		actions/stock_zoom-out
+zoom-out		actions/viewmag-"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
