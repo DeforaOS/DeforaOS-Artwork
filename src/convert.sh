@@ -93,7 +93,7 @@ ICONS="
 		apps/preferences-system-windows
 		apps/system-file-manager
 		apps/system-users
-		apps/user-info
+		apps/user-info
 		apps/utilities-terminal
 		apps/web-browser
 		categories/applications-development
