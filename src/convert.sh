@@ -30,15 +30,18 @@ FGCOLOR="white"
 FONT="FontAwesome"
 ICONS="
 		actions/application-exit
-		actions/appointment-new
+		actions/appointment-new
+		actions/appointment-soon
 		actions/call-start
+		actions/contact-new
 		actions/document-new
 		actions/document-open
 		actions/document-open-recent
 		actions/document-print
-		actions/document-properties
+		actions/document-properties
 		actions/document-revert
 		actions/document-save
+		actions/document-save-as
 		actions/edit-clear
 		actions/edit-copy
 		actions/edit-cut
@@ -50,6 +53,10 @@ ICONS="
 		actions/edit-undo
 		actions/format-indent-less
 		actions/format-indent-more
+		actions/format-justify-center
+		actions/format-justify-fill
+		actions/format-justify-left
+		actions/format-justify-right
 		actions/format-text-bold
 		actions/format-text-italic
 		actions/format-text-strikethrough
@@ -73,6 +80,10 @@ ICONS="
 		actions/media-seek-backward
 		actions/media-skip-backward
 		actions/media-skip-forward
+		actions/object-flip-horizontal
+		actions/object-flip-vertical
+		actions/object-rotate-left
+		actions/object-rotate-right
 		actions/process-stop
 		actions/system-lock-screen
 		actions/system-log-out
@@ -87,6 +98,7 @@ ICONS="
 		actions/zoom-in
 		actions/zoom-original
 		actions/zoom-out
+		apps/accessories-calculator
 		apps/accessories-text-editor
 		apps/help-browser
 		apps/preferences-desktop-accessibility
@@ -98,6 +110,7 @@ ICONS="
 		apps/utilities-terminal
 		apps/web-browser
 		categories/applications-development
+		categories/applications-engineering
 		categories/applications-games
 		categories/applications-graphics
 		categories/applications-internet
@@ -105,7 +118,7 @@ ICONS="
 		categories/applications-office
 		categories/applications-science
 		categories/applications-system
-		categories/preferences-desktop
+		categories/preferences-desktop
 		devices/audio-input-microphone
 		devices/camera-photo
 		devices/camera-video
@@ -133,10 +146,16 @@ ICONS="
 		status/folder-open
 		status/image-loading
 		status/mail-attachment
-		status/network-idle
+		status/network-idle
+		status/network-receive
+		status/network-transmit
+		status/network-transmit-receive
 		status/network-offline"
 PREFIX="/usr/local"
 SYMLINKS="
+accessories-calculator	apps/calc
+accessories-calculator	apps/gnome-calculator
+accessories-calculator	apps/kcalc
 accessories-text-editor	apps/kedit
 accessories-text-editor	apps/text-editor
 application-exit	actions/exit
@@ -171,11 +190,13 @@ applications-system	categories/package_system
 applications-system	categories/redhat-system_tools
 appointment-new		actions/appointment
 appointment-new		actions/stock_new-appointment
+appointment-soon	actions/stock_appointment-reminder
 audio-input-microphone	devices/gnome-stock-mic
 audio-input-microphone	devices/stock_mic
 audio-volume-muted	status/stock_volume-mute
 camera-photo		devices/camera
 camera-photo		devices/camera_unmount
+contact-new		actions/stock_new-bcard
 dialog-error		status/gtk-dialog-error
 dialog-error		status/stock_dialog-error
 dialog-information	status/stock_dialog-info
@@ -199,6 +220,9 @@ document-revert		actions/revert
 document-save		actions/filesave
 document-save		actions/gtk-save
 document-save		actions/stock_save
+document-save-as	actions/filesaves
+document-save-as	actions/gtk-save-as
+document-save-as	actions/stock_save-as
 drive-harddisk		devices/gnome-dev-harddisk
 drive-harddisk		devices/gnome-dev-harddisk-1394
 drive-harddisk		devices/gnome-dev-harddisk-usb
@@ -249,6 +273,17 @@ format-indent-more	actions/gnome-stock-text-indent
 format-indent-more	actions/gtk-indent-ltr
 format-indent-more	actions/gtk-unindent-rtl
 format-indent-more	actions/stock_text_indent
+format-justify-center	actions/centerjust
+format-justify-center	actions/gtk-justify-center
+format-justify-center	actions/stock_text_center
+format-justify-fill	actions/gtk-justify-fill
+format-justify-fill	actions/stock_text_justify
+format-justify-left	actions/gtk-justify-left
+format-justify-left	actions/leftjust
+format-justify-left	actions/stock_text_left
+format-justify-right	actions/gtk-justify-right
+format-justify-right	actions/rightjust
+format-justify-rightt	actions/stock_text_right
 format-text-bold	actions/gtk-bold
 format-text-bold	actions/stock_text_bold
 format-text-bold	actions/text_bold
@@ -345,6 +380,10 @@ network-idle		status/gnome-netstatus-idle
 network-idle		status/nm-adhoc
 network-idle		status/nm-device-wired
 network-idle		status/nm-device-wireless
+network-receive		status/gnome-netstatus-rx
+network-transmit	status/gnome-netstatus-tx
+network-transmit-receive	status/connect_creating
+network-transmit-receive	status/gnome-netstatus-txrx
 network-offline		status/connect_no
 network-offline		status/gnome-netstatus-disconn
 network-offline		status/nm-no-connection
