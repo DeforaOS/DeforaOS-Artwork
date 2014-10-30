@@ -392,9 +392,9 @@ utilities-terminal	apps/xfce-terminal
 video-display		devices/chardevice
 video-display		devices/display
 video-display		devices/xfce4-display
-view-fullscreen		gtk-fullscreen
-view-fullscreen		stock_fullscreen
-view-fullscreen		window_fullscreen
+view-fullscreen		actions/gtk-fullscreen
+view-fullscreen		actions/stock_fullscreen
+view-fullscreen		actions/window_fullscreen
 view-refresh		actions/gtk-refresh
 view-refresh		actions/stock_refresh
 view-sort-ascending	actions/gtk-sort-ascending
