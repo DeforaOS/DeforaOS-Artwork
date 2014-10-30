@@ -36,10 +36,9 @@ ICONS="
 		actions/document-open
 		actions/document-open-recent
 		actions/document-print
-		actions/document-properties
+		actions/document-properties
 		actions/document-revert
 		actions/document-save
-		actions/help-about
 		actions/edit-clear
 		actions/edit-copy
 		actions/edit-cut
@@ -60,6 +59,7 @@ ICONS="
 		actions/go-next
 		actions/go-previous
 		actions/go-up
+		actions/help-about
 		actions/help-contents
 		actions/list-add
 		actions/list-remove
@@ -75,7 +75,7 @@ ICONS="
 		actions/media-skip-forward
 		actions/process-stop
 		actions/system-lock-screen
-		actions/system-log-out
+		actions/system-log-out
 		actions/system-run
 		actions/system-search
 		actions/system-shutdown
@@ -88,6 +88,7 @@ ICONS="
 		actions/zoom-original
 		actions/zoom-out
 		apps/accessories-text-editor
+		apps/help-browser
 		apps/preferences-desktop-accessibility
 		apps/preferences-desktop-font
 		apps/preferences-system-windows
@@ -99,10 +100,12 @@ ICONS="
 		categories/applications-development
 		categories/applications-games
 		categories/applications-graphics
+		categories/applications-internet
 		categories/applications-multimedia
 		categories/applications-office
 		categories/applications-science
-		categories/preferences-desktop
+		categories/applications-system
+		categories/preferences-desktop
 		devices/audio-input-microphone
 		devices/camera-photo
 		devices/camera-video
@@ -112,7 +115,7 @@ ICONS="
 		devices/media-optical
 		devices/media-floppy
 		devices/modem
-		devices/network-wireless
+		devices/network-wireless
 		devices/phone
 		devices/printer
 		devices/video-display
@@ -123,9 +126,9 @@ ICONS="
 		places/user-trash
 		status/audio-volume-muted
 		status/dialog-error
-		status/dialog-information
+		status/dialog-information
 		status/dialog-password
-		status/dialog-question
+		status/dialog-question
 		status/dialog-warning
 		status/folder-open
 		status/image-loading
@@ -150,6 +153,11 @@ applications-graphics	categories/gnome-graphics
 applications-graphics	categories/package_graphics
 applications-graphics	categories/redhat_graphics
 applications-graphics	categories/xfce-graphics
+applications-internet	categories/gnome-globe
+applications-internet	categories/package_network
+applications-internet	categories/redhat-internet
+applications-internet	categories/stock_internet
+applications-internet	categories/xfce-internet
 applications-multimedia	categories/gnome-multimedia
 applications-multimedia	categories/package_multimedia
 applications-multimedia	categories/redhat-sound_video
@@ -158,6 +166,9 @@ applications-office	categories/gnome-applications
 applications-office	categories/package_office
 applications-office	categories/redhat-office
 applications-office	categories/xfce-office
+applications-system	categories/gnome-system
+applications-system	categories/package_system
+applications-system	categories/redhat-system_tools
 appointment-new		actions/appointment
 appointment-new		actions/stock_new-appointment
 audio-input-microphone	devices/gnome-stock-mic
@@ -273,6 +284,9 @@ go-up			actions/stock_up
 go-up			actions/up
 help-about		actions/gtk-about
 help-about		actions/stock_about
+help-browser		apps/gnome-help
+help-browser		apps/khelpcenter
+help-browser		apps/susehelpcenter
 help-contents		actions/help
 help-contents		actions/stock_help
 image-loading		status/gnome-fs-loading-icon
@@ -340,7 +354,12 @@ network-workgroup	places/gnome-mime-x-directory-smb-workgroup
 network-workgroup	places/gtk-network
 network-workgroup	places/network_local
 phone			devices/stock_cell-phone
+preferences-desktop	categories/gnome-control-center
+preferences-desktop	categories/gnome-settings
 preferences-desktop	categories/gtk-preferences
+preferences-desktop	categories/kcontrol
+preferences-desktop	categories/redhat-preferences
+preferences-desktop	categories/xfce4-settings
 preferences-desktop-accessibility	apps/access
 preferences-desktop-accessibility	apps/accessibility-directory
 preferences-desktop-accessibility	apps/gnome-settings-accessibility-technologies
