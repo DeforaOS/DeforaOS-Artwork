@@ -283,7 +283,7 @@ format-justify-left	actions/leftjust
 format-justify-left	actions/stock_text_left
 format-justify-right	actions/gtk-justify-right
 format-justify-right	actions/rightjust
-format-justify-rightt	actions/stock_text_right
+format-justify-right	actions/stock_text_right
 format-text-bold	actions/gtk-bold
 format-text-bold	actions/stock_text_bold
 format-text-bold	actions/text_bold
