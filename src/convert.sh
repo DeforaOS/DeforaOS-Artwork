@@ -493,7 +493,7 @@ _convert()
 	folder="$theme/$size"
 	shift 2
 
-	$DEBUG $MKDIR "$folder/places"
+	$DEBUG $MKDIR -- "$folder/places"			|| return 2
 	$DEBUG $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$size" $@ \
@@ -504,7 +504,7 @@ _convert()
 		[ -z "$char" ] && continue
 		dirname="${stock%/*}"
 
-		$DEBUG $MKDIR "$folder/$dirname"
+		$DEBUG $MKDIR -- "$folder/$dirname"		|| return 2
 		echo "push graphic-context
 	viewbox 0 0 256 256
 	push graphic-context
@@ -521,13 +521,16 @@ pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
 		"$folder/${stock}.png"				|| return 2
 	done
+	[ $? -eq 0 ]						|| return 2
 
 	#symlinks
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $LN -s "${from}.png" "$folder/${to}.png"	|| return 2
+		$DEBUG $LN -s -- "${from}.png" "$folder/${to}.png" \
+								|| return 2
 	done
+	[ $? -eq 0 ]						|| return 2
 }
 
 
@@ -619,7 +622,7 @@ _install()
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $LN -s "${from}.png" \
+		$DEBUG $LN -s -- "${from}.png" \
 			"$PREFIX/$instdir/${size}x${size}/${to}.png" \
 								|| return 2
 	done
@@ -633,14 +636,14 @@ _uninstall()
 	size="$2"
 	instdir="${target%%/*}"
 
-	$DEBUG $RM "$PREFIX/$target"				|| return 2
+	$DEBUG $RM -- "$PREFIX/$target"				|| return 2
 	[ -z "$size" ] && return 0
 
 	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 
-		$DEBUG $RM "$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${stock}.png" \
 								|| return 2
 	done
 
@@ -648,7 +651,7 @@ _uninstall()
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $RM "$PREFIX/$instdir/${size}x${size}/${to}.png" \
+		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${to}.png" \
 								|| return 2
 	done
 }
