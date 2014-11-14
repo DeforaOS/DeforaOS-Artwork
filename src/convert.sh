@@ -42,6 +42,7 @@ ICONS="
 		actions/document-revert
 		actions/document-save
 		actions/document-save-as
+		actions/document-send
 		actions/edit-clear
 		actions/edit-copy
 		actions/edit-cut
@@ -107,6 +108,7 @@ ICONS="
 		apps/system-file-manager
 		apps/system-users
 		apps/user-info
+		apps/utilities-system-monitor
 		apps/utilities-terminal
 		apps/web-browser
 		categories/applications-development
@@ -135,7 +137,13 @@ ICONS="
 		mimetypes/image-x-generic
 		mimetypes/x-office-calendar
 		places/folder
+		places/folder-download
+		places/folder-music
+		places/folder-pictures
+		places/folder-publicshare
+		places/folder-videos
 		places/network-workgroup
+		places/user-bookmarks
 		places/user-trash
 		status/audio-volume-muted
 		status/dialog-error
@@ -443,6 +451,8 @@ user-trash		places/gnome-fs-trash-empty
 user-trash		places/gnome-stock-trash
 user-trash		places/trashcan_empty
 user-trash		places/xfce-trash_empty
+utilities-system-monitor	apps/gnome-monitor
+utilities-system-monitor	apps/ksysguard
 utilities-terminal	apps/gnome-terminal
 utilities-terminal	apps/konsole
 utilities-terminal	apps/openterm
