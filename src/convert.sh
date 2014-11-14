@@ -152,6 +152,7 @@ ICONS="
 		status/network-transmit-receive
 		status/network-offline"
 PREFIX="/usr/local"
+PROGNAME="convert.sh"
 SYMLINKS="
 accessories-calculator	apps/calc
 accessories-calculator	apps/gnome-calculator
@@ -656,7 +657,7 @@ _uninstall()
 #usage
 _usage()
 {
-	echo "Usage: convert.sh [-c|-i|-u][-P prefix] target..." 1>&2
+	echo "Usage: $PROGNAME [-c|-i|-u][-P prefix] target..." 1>&2
 	return 1
 }
 
