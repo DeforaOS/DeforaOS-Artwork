@@ -135,6 +135,7 @@ ICONS="
 		devices/printer
 		devices/video-display
 		mimetypes/image-x-generic
+		mimetypes/package-x-generic
 		mimetypes/x-office-calendar
 		places/folder
 		places/folder-download
@@ -401,6 +402,8 @@ network-workgroup	places/gnome-fs-network
 network-workgroup	places/gnome-mime-x-directory-smb-workgroup
 network-workgroup	places/gtk-network
 network-workgroup	places/network_local
+package-x-generic	mimetypes/gnome-package
+package-x-generic	mimetypes/package
 phone			devices/stock_cell-phone
 preferences-desktop	categories/gnome-control-center
 preferences-desktop	categories/gnome-settings
