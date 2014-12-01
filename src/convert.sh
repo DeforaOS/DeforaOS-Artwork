@@ -104,6 +104,7 @@ ICONS="
 		apps/help-browser
 		apps/preferences-desktop-accessibility
 		apps/preferences-desktop-font
+		apps/preferences-desktop-locale
 		apps/preferences-system-windows
 		apps/system-file-manager
 		apps/system-users
@@ -419,6 +420,8 @@ preferences-desktop-accessibility	apps/accessibility-directory
 preferences-desktop-accessibility	apps/gnome-settings-accessibility-technologies
 preferences-desktop-font	apps/fonts
 preferences-desktop-font	apps/gnome-settings-font
+preferences-desktop-locale	apps/config-language
+preferences-desktop-locale	apps/locale
 preferences-system-windows	apps/gnome-window-manager
 preferences-system-windows	apps/kcmkwm
 preferences-system-windows	apps/kwin
