@@ -125,6 +125,7 @@ ICONS="
 		devices/camera-photo
 		devices/camera-video
 		devices/drive-harddisk
+		devices/input-gaming
 		devices/input-keyboard
 		devices/drive-optical
 		devices/media-optical
@@ -337,6 +338,8 @@ help-contents		actions/stock_help
 image-loading		status/gnome-fs-loading-icon
 image-x-generic		mimetypes/gnome-mime-image
 image-x-generic		mimetypes/image
+input-gaming		devices/joystick
+input-gaming		devices/yast_joystick
 input-keyboard		devices/gnome-dev-keyboard
 input-keyboard		devices/keyboard
 input-keyboard		devices/kxkb
