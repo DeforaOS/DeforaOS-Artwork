@@ -113,7 +113,7 @@ ICONS="
 		apps/web-browser
 		categories/applications-development
 		categories/applications-engineering
-		categories/applications-games
+		categories/applications-games
 		categories/applications-graphics
 		categories/applications-internet
 		categories/applications-multimedia
