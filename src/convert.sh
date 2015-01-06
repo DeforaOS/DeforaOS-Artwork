@@ -534,7 +534,8 @@ _convert()
 		fill '$FGCOLOR'
 		font-family '$FONT'
 		font-size 224
-		text 32,196 '$char'
+		gravity Center
+		text 0,0 '$char'
 	pop graphic-context
 pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
