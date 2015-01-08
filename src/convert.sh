@@ -722,8 +722,10 @@ while [ $# -gt 0 ]; do
 	shift
 
 	#determine the argument
-	theme="${target%%/*}"
-	size="${target#*/}"
+	theme="${target#$OBJDIR}"
+	theme="${theme%%/*}"
+	size="${target#$OBJDIR}"
+	size="${size#*/}"
 	size="${size%%/*}"
 	size="${size%%x*}"
 	filename="${target##*/}"
