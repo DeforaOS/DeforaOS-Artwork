@@ -512,18 +512,18 @@ _convert()
 	folder="$theme/$size"
 	shift 2
 
-	$DEBUG $MKDIR -- "$folder/places"			|| return 2
+	$DEBUG $MKDIR -- "$OBJDIR$folder/places"		|| return 2
 	$DEBUG $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$size" $@ \
-		"$folder/places/start-here.png"			|| return 2
+		"$OBJDIR$folder/places/start-here.png"		|| return 2
 
 	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 		dirname="${stock%/*}"
 
-		$DEBUG $MKDIR -- "$folder/$dirname"		|| return 2
+		$DEBUG $MKDIR -- "$OBJDIR$folder/$dirname"	|| return 2
 		echo "push graphic-context
 	viewbox 0 0 256 256
 	push graphic-context
@@ -539,7 +539,7 @@ _convert()
 	pop graphic-context
 pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
-		"$folder/${stock}.png"				|| return 2
+		"$OBJDIR$folder/${stock}.png"			|| return 2
 	done
 	[ $? -eq 0 ]						|| return 2
 
@@ -547,7 +547,7 @@ pop graphic-context" | $DEBUG $CONVERT -background none - \
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $LN -s -- "${from}.png" "$folder/${to}.png" \
+		$DEBUG $LN -s -- "${from}.png" "$OBJDIR$folder/${to}.png" \
 								|| return 2
 	done
 	[ $? -eq 0 ]						|| return 2
@@ -561,7 +561,7 @@ _clean()
 	size="${2}x${2}"
 	folder="$theme/$size"
 
-	$DEBUG $RM -- "$folder/places/start-here.png"		|| return 2
+	$DEBUG $RM -- "$OBJDIR$folder/places/start-here.png"	|| return 2
 }
 
 
@@ -623,7 +623,7 @@ _install()
 	instdir="${target%%/*}"
 
 	$DEBUG $MKDIR -- "$PREFIX/$dirname"			|| return 2
-	$DEBUG $INSTALL "$target" "$PREFIX/$target"		|| return 2
+	$DEBUG $INSTALL "$OBJDIR$target" "$PREFIX/$target"	|| return 2
 	[ -z "$size" ] && return 0
 
 	#icons
@@ -633,7 +633,7 @@ _install()
 
 		$DEBUG $MKDIR -- "$PREFIX/$instdir/${size}x${size}/$dirname" \
 								|| return 2
-		$DEBUG $INSTALL "$instdir/${size}x${size}/${stock}.png" \
+		$DEBUG $INSTALL "$OBJDIR$instdir/${size}x${size}/${stock}.png" \
 			"$PREFIX/$instdir/${size}x${size}/${stock}.png" \
 								|| return 2
 	done
@@ -718,14 +718,12 @@ if [ $# -eq 0 ]; then
 fi
 
 while [ $# -gt 0 ]; do
-	target="$1"
+	target="${1#$OBJDIR}"
 	shift
 
 	#determine the argument
-	theme="${target#$OBJDIR}"
-	theme="${theme%%/*}"
-	size="${target#$OBJDIR}"
-	size="${size#*/}"
+	theme="${target%%/*}"
+	size="${target#*/}"
 	size="${size%%/*}"
 	size="${size%%x*}"
 	filename="${target##*/}"
@@ -758,7 +756,8 @@ while [ $# -gt 0 ]; do
 
 	#create
 	if [ "$filename" = "index.theme" ]; then
-		_index "$theme" > "$theme/index.theme"		|| exit 2
+		$DEBUG $MKDIR -- "$OBJDIR$theme"		|| exit 2
+		_index "$theme" > "$OBJDIR$theme/index.theme"	|| exit 2
 	else
 		_convert "$theme" "$size"			|| exit 2
 	fi
