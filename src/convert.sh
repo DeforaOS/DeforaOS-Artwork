@@ -562,6 +562,20 @@ _clean()
 	folder="$theme/$size"
 
 	$DEBUG $RM -- "$OBJDIR$folder/places/start-here.png"	|| return 2
+
+	#icons
+	echo "$ICONS" | while read char stock; do
+		[ -z "$char" ] && continue
+
+		$DEBUG $RM -- "$theme/${size}/${stock}.png"	|| return 2
+	done
+
+	#symlinks
+	echo "$SYMLINKS" | while read from to; do
+		[ -z "$from" ] && continue
+
+		$DEBUG $RM -- "$theme/${size}/${to}.png"	|| return 2
+	done
 }
 
 
@@ -723,14 +737,21 @@ while [ $# -gt 0 ]; do
 
 	#determine the argument
 	theme="${target%%/*}"
-	size="${target#*/}"
-	size="${size%%/*}"
+	index="${target#*/}"
+	size="${index%%/*}"
 	size="${size%%x*}"
 	filename="${target##*/}"
 
 	#clean
 	if [ $clean -ne 0 ]; then
-		_clean "$theme" "$size"				|| exit 2
+		case "$size" in
+			[0-9]*)
+				_clean "$theme" "$size"		|| exit 2
+				;;
+			*)
+				$DEBUG $RM -- "$theme/$index"	|| exit 2
+				;;
+		esac
 		continue
 	fi
 
