@@ -744,14 +744,11 @@ while [ $# -gt 0 ]; do
 
 	#clean
 	if [ $clean -ne 0 ]; then
-		case "$size" in
-			[0-9]*)
-				_clean "$theme" "$size"		|| exit 2
-				;;
-			*)
-				$DEBUG $RM -- "$theme/$index"	|| exit 2
-				;;
-		esac
+		if [ "$filename" = "index.theme" ]; then
+			$DEBUG $RM -- "$theme/index.theme"	|| exit 2
+		else
+			_clean "$theme" "$size"			|| exit 2
+		fi
 		continue
 	fi
 
