@@ -1,5 +1,5 @@
 PACKAGE	= DeforaOS-Artwork
-VERSION	= 0.1.0
+VERSION	= 0.1.1
 SUBDIRS	= data src
 RM	= rm -f
 LN	= ln -f
