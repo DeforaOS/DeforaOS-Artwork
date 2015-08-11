@@ -1,4 +1,4 @@
-TARGETS	= $(OBJDIR)DeforaOS/16x16/places/start-here.png $(OBJDIR)DeforaOS/22x22/places/start-here.png $(OBJDIR)DeforaOS/24x24/places/start-here.png $(OBJDIR)DeforaOS/32x32/places/start-here.png $(OBJDIR)DeforaOS/48x48/places/start-here.png $(OBJDIR)DeforaOS/256x256/places/start-here.png $(OBJDIR)DeforaOS/index.theme
+TARGETS	= $(OBJDIR)DeforaOS/16x16/places/start-here.png $(OBJDIR)DeforaOS/22x22/places/start-here.png $(OBJDIR)DeforaOS/24x24/places/start-here.png $(OBJDIR)DeforaOS/32x32/places/start-here.png $(OBJDIR)DeforaOS/48x48/places/start-here.png $(OBJDIR)DeforaOS/256x256/places/start-here.png $(OBJDIR)DeforaOS/index.theme $(OBJDIR)DeforaOS.png
 OBJDIR	=
 PREFIX	= /usr/local
 DESTDIR	=
@@ -31,8 +31,11 @@ $(OBJDIR)DeforaOS/256x256/places/start-here.png:
 $(OBJDIR)DeforaOS/index.theme:
 	./convert.sh -P "$(PREFIX)" -- "$(OBJDIR)DeforaOS/index.theme"
 
+$(OBJDIR)DeforaOS.png:
+	./icon.sh -P "$(PREFIX)" -- "$(OBJDIR)DeforaOS.png"
+
 clean:
-	$(RM) -- $(DeforaOS/16x16/places/start-here.png_OBJS) $(DeforaOS/22x22/places/start-here.png_OBJS) $(DeforaOS/24x24/places/start-here.png_OBJS) $(DeforaOS/32x32/places/start-here.png_OBJS) $(DeforaOS/48x48/places/start-here.png_OBJS) $(DeforaOS/256x256/places/start-here.png_OBJS) $(DeforaOS/index.theme_OBJS)
+	$(RM) -- $(DeforaOS/16x16/places/start-here.png_OBJS) $(DeforaOS/22x22/places/start-here.png_OBJS) $(DeforaOS/24x24/places/start-here.png_OBJS) $(DeforaOS/32x32/places/start-here.png_OBJS) $(DeforaOS/48x48/places/start-here.png_OBJS) $(DeforaOS/256x256/places/start-here.png_OBJS) $(DeforaOS/index.theme_OBJS) $(DeforaOS.png_OBJS)
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/16x16/places/start-here.png"
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/22x22/places/start-here.png"
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/24x24/places/start-here.png"
@@ -40,6 +43,7 @@ clean:
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/48x48/places/start-here.png"
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/256x256/places/start-here.png"
 	./convert.sh -c -P "$(PREFIX)" -- "DeforaOS/index.theme"
+	./icon.sh -c -P "$(PREFIX)" -- "DeforaOS.png"
 
 distclean: clean
 	$(RM) -- $(TARGETS)
@@ -52,6 +56,7 @@ install: $(TARGETS)
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "$(OBJDIR)DeforaOS/48x48/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "$(OBJDIR)DeforaOS/256x256/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -i -- "$(OBJDIR)DeforaOS/index.theme"
+	./icon.sh -P "$(DESTDIR)$(PREFIX)/share/pixmaps" -i -- "$(OBJDIR)DeforaOS.png"
 
 uninstall:
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/16x16/places/start-here.png"
@@ -61,5 +66,6 @@ uninstall:
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/48x48/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/256x256/places/start-here.png"
 	./convert.sh -P "$(DESTDIR)$(PREFIX)/share/icons" -u -- "DeforaOS/index.theme"
+	./icon.sh -P "$(DESTDIR)$(PREFIX)/share/pixmaps" -u -- "DeforaOS.png"
 
 .PHONY: all clean distclean install uninstall
