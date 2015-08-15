@@ -28,6 +28,7 @@
 BGCOLOR="black"
 FGCOLOR="white"
 PROGNAME="icon.sh"
+SIZE="96x96"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
@@ -115,6 +116,6 @@ while [ $# -gt 0 ]; do
 	#create
 	$DEBUG $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
-		-resize "$size" $@ \
+		-resize "$SIZE" $@ \
 		"$OBJDIR$target"				|| return 2
 done
