@@ -39,12 +39,6 @@ RM="rm -f"
 
 
 #functions
-#icon
-_icon()
-{
-}
-
-
 #debug
 _debug()
 {
