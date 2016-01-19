@@ -149,6 +149,8 @@ ICONS="
 		places/user-bookmarks
 		places/user-trash
 		status/audio-volume-muted
+		status/changes-allow
+		status/changes-prevent
 		status/dialog-error
 		status/dialog-information
 		status/dialog-password
