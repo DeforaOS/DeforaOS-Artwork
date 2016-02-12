@@ -570,14 +570,15 @@ _clean()
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 
-		$DEBUG $RM -- "$theme/${size}/${stock}.png"	|| return 2
+		$DEBUG $RM -- "$OBJDIR$theme/${size}/${stock}.png" \
+								|| return 2
 	done
 
 	#symlinks
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $RM -- "$theme/${size}/${to}.png"	|| return 2
+		$DEBUG $RM -- "$OBJDIR$theme/${size}/${to}.png"	|| return 2
 	done
 }
 
@@ -603,7 +604,8 @@ _index()
 
 	echo -n "Directories="
 	sep=
-	$FIND "$theme" -type d | $SORT | while read folder; do
+	$FIND "$OBJDIR$theme" -type d | $SORT | while read folder; do
+		folder="${folder#$OBJDIR}"
 		size="${folder#*/}"
 		size="${size%%/*}"
 		basename="${folder##*/}"
@@ -615,7 +617,8 @@ _index()
 	echo ""
 
 	#directories
-	$FIND "$theme" -type d | $SORT | while read folder; do
+	$FIND "$OBJDIR$theme" -type d | $SORT | while read folder; do
+		folder="${folder#$OBJDIR}"
 		size="${folder#*/}"
 		size="${size%%/*}"
 		basename="${folder##*/}"
