@@ -503,6 +503,7 @@ INSTALL="install -m 0644"
 LN="ln -f"
 MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
+SORT="sort"
 
 
 #functions
@@ -602,7 +603,7 @@ _index()
 
 	echo -n "Directories="
 	sep=
-	$FIND "$theme" -type d | while read folder; do
+	$FIND "$theme" -type d | $SORT | while read folder; do
 		size="${folder#*/}"
 		size="${size%%/*}"
 		basename="${folder##*/}"
@@ -614,7 +615,7 @@ _index()
 	echo ""
 
 	#directories
-	$FIND "$theme" -type d | while read folder; do
+	$FIND "$theme" -type d | $SORT | while read folder; do
 		size="${folder#*/}"
 		size="${size%%/*}"
 		basename="${folder##*/}"
