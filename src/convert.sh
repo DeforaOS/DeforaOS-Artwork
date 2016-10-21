@@ -494,6 +494,7 @@ zoom-original		actions/viewmag1
 zoom-out		actions/gtk-zoom-out
 zoom-out		actions/stock_zoom-out
 zoom-out		actions/viewmag-"
+THEMEEXT=".theme"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
 CONVERT="convert -quiet"
@@ -750,8 +751,8 @@ while [ $# -gt 0 ]; do
 
 	#clean
 	if [ $clean -ne 0 ]; then
-		if [ "$filename" = "index.theme" ]; then
-			$DEBUG $RM -- "$theme/index.theme"	|| exit 2
+		if [ "$filename" = "index$THEMEEXT" ]; then
+			$DEBUG $RM -- "$theme/index$THEMEEXT"	|| exit 2
 		else
 			_clean "$theme" "$size"			|| exit 2
 		fi
@@ -760,7 +761,7 @@ while [ $# -gt 0 ]; do
 
 	#uninstall
 	if [ $uninstall -eq 1 ]; then
-		if [ "$filename" = "index.theme" ]; then
+		if [ "$filename" = "index$THEMEEXT" ]; then
 			_uninstall "$target"			|| exit 2
 		else
 			_uninstall "$target" "$size"		|| exit 2
@@ -770,7 +771,7 @@ while [ $# -gt 0 ]; do
 
 	#install
 	if [ $install -eq 1 ]; then
-		if [ "$filename" = "index.theme" ]; then
+		if [ "$filename" = "index$THEMEEXT" ]; then
 			_install "$target"			|| exit 2
 		else
 			_install "$target" "$size"		|| exit 2
@@ -779,9 +780,9 @@ while [ $# -gt 0 ]; do
 	fi
 
 	#create
-	if [ "$filename" = "index.theme" ]; then
+	if [ "$filename" = "index$THEMEEXT" ]; then
 		$DEBUG $MKDIR -- "$OBJDIR$theme"		|| exit 2
-		_index "$theme" > "$OBJDIR$theme/index.theme"	|| exit 2
+		_index "$theme" > "$OBJDIR$theme/index$THEMEEXT"|| exit 2
 	else
 		_convert "$theme" "$size"			|| exit 2
 	fi
