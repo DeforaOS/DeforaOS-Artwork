@@ -498,7 +498,7 @@ zoom-out		actions/viewmag-"
 THEMEEXT=".theme"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
-CONVERT="convert -quiet"
+CONVERT="gm convert"
 DEBUG="_debug"
 FIND="find"
 INSTALL="install -m 0644"
