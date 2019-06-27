@@ -165,6 +165,7 @@ ICONS="
 		status/network-transmit-receive
 		status/network-offline"
 PREFIX="/usr/local"
+IMGEXT=".png"
 PROGNAME="convert.sh"
 SYMLINKS="
 accessories-calculator	apps/calc
@@ -520,7 +521,7 @@ _convert()
 	$DEBUG $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$size" $@ \
-		"$OBJDIR$folder/places/start-here.png"		|| return 2
+		"$OBJDIR$folder/places/start-here$IMGEXT"	|| return 2
 
 	#icons
 	echo "$ICONS" | while read char stock; do
@@ -543,7 +544,7 @@ _convert()
 	pop graphic-context
 pop graphic-context" | $DEBUG $CONVERT -background none - \
 		-resize "$size" $@ \
-		"$OBJDIR$folder/${stock}.png"			|| return 2
+		"$OBJDIR$folder/${stock}$IMGEXT"		|| return 2
 	done
 	[ $? -eq 0 ]						|| return 2
 
@@ -551,7 +552,7 @@ pop graphic-context" | $DEBUG $CONVERT -background none - \
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $LN -s -- "${from}.png" "$OBJDIR$folder/${to}.png" \
+		$DEBUG $LN -s -- "${from}$IMGEXT" "$OBJDIR$folder/${to}$IMGEXT" \
 								|| return 2
 	done
 	[ $? -eq 0 ]						|| return 2
@@ -565,13 +566,13 @@ _clean()
 	size="${2}x${2}"
 	folder="$theme/$size"
 
-	$DEBUG $RM -- "$OBJDIR$folder/places/start-here.png"	|| return 2
+	$DEBUG $RM -- "$OBJDIR$folder/places/start-here$IMGEXT"	|| return 2
 
 	#icons
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 
-		$DEBUG $RM -- "$OBJDIR$theme/${size}/${stock}.png" \
+		$DEBUG $RM -- "$OBJDIR$theme/${size}/${stock}$IMGEXT" \
 								|| return 2
 	done
 
@@ -579,7 +580,8 @@ _clean()
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $RM -- "$OBJDIR$theme/${size}/${to}.png"	|| return 2
+		$DEBUG $RM -- "$OBJDIR$theme/${size}/${to}$IMGEXT" \
+								|| return 2
 	done
 }
 
@@ -654,8 +656,8 @@ _install()
 
 		$DEBUG $MKDIR -- "$PREFIX/$instdir/${size}x${size}/$dirname" \
 								|| return 2
-		$DEBUG $INSTALL "$OBJDIR$instdir/${size}x${size}/${stock}.png" \
-			"$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+		$DEBUG $INSTALL "$OBJDIR$instdir/${size}x${size}/${stock}$IMGEXT" \
+			"$PREFIX/$instdir/${size}x${size}/${stock}$IMGEXT" \
 								|| return 2
 	done
 
@@ -663,8 +665,8 @@ _install()
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $LN -s -- "${from}.png" \
-			"$PREFIX/$instdir/${size}x${size}/${to}.png" \
+		$DEBUG $LN -s -- "${from}$IMGEXT" \
+			"$PREFIX/$instdir/${size}x${size}/${to}$IMGEXT" \
 								|| return 2
 	done
 }
@@ -684,7 +686,7 @@ _uninstall()
 	echo "$ICONS" | while read char stock; do
 		[ -z "$char" ] && continue
 
-		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${stock}.png" \
+		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${stock}$IMGEXT" \
 								|| return 2
 	done
 
@@ -692,7 +694,7 @@ _uninstall()
 	echo "$SYMLINKS" | while read from to; do
 		[ -z "$from" ] && continue
 
-		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${to}.png" \
+		$DEBUG $RM -- "$PREFIX/$instdir/${size}x${size}/${to}$IMGEXT" \
 								|| return 2
 	done
 }
