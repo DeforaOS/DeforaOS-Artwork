@@ -542,7 +542,7 @@ _convert()
 		gravity Center
 		text 0,0 '$char'
 	pop graphic-context
-pop graphic-context" | $DEBUG $CONVERT -background none - \
+pop graphic-context" | $DEBUG $CONVERT -background none mvg:- \
 		-resize "$size" $@ \
 		"$OBJDIR$folder/${stock}$IMGEXT"		|| return 2
 	done
