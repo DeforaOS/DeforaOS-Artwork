@@ -92,6 +92,9 @@ while [ $# -gt 0 ]; do
 	shift
 
 	#clean
+	if [ $clean -ne 0 ]; then
+		continue
+	fi
 
 	#uninstall
 	if [ $uninstall -eq 1 ]; then
