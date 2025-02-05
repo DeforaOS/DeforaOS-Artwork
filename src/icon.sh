@@ -31,9 +31,12 @@ PROGNAME="icon.sh"
 SIZE="96x96"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
-CONVERT="gm convert"
+CONVERT="convert"
 DEBUG="_debug"
+GM="gm"
+GMORIM="_gmorim"
 INSTALL="install -m 0644"
+MAGICK="magick"
 MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
 
@@ -44,6 +47,19 @@ _debug()
 {
 	echo "$@" 1>&2
 	"$@"
+}
+
+
+#gmorim
+_gmorim()
+{
+	$DEBUG $GM "$@"
+	ret=$?
+	if [ $ret -eq 127 ]; then
+		$DEBUG $MAGICK "$@"
+		ret=$?
+	fi
+	return $ret
 }
 
 
@@ -111,7 +127,7 @@ while [ $# -gt 0 ]; do
 	fi
 
 	#create
-	$DEBUG $CONVERT -background none -density 300 \
+	$GMORIM $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$SIZE" $@ \
 		"$OBJDIR$target"				|| return 2

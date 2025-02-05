@@ -498,11 +498,14 @@ zoom-out		actions/viewmag-"
 THEMEEXT=".theme"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
-CONVERT="gm convert"
+CONVERT="convert"
 DEBUG="_debug"
 FIND="find"
+GM="gm"
+GMORIM="_gmorim"
 INSTALL="install -m 0644"
 LN="ln -f"
+MAGICK="magick"
 MKDIR="mkdir -m 0755 -p"
 RM="rm -f"
 SORT="sort"
@@ -518,7 +521,7 @@ _convert()
 	shift 2
 
 	$DEBUG $MKDIR -- "$OBJDIR$folder/places"		|| return 2
-	$DEBUG $CONVERT -background none -density 300 \
+	$GMORIM $CONVERT -background none -density 300 \
 		"../data/DeforaOS-d-${BGCOLOR}.svg" \
 		-resize "$size" $@ \
 		"$OBJDIR$folder/places/start-here$IMGEXT"	|| return 2
@@ -542,7 +545,7 @@ _convert()
 		gravity Center
 		text 0,0 '$char'
 	pop graphic-context
-pop graphic-context" | $DEBUG $CONVERT -background none mvg:- \
+pop graphic-context" | $GMORIM $CONVERT -background none mvg:- \
 		-resize "$size" $@ \
 		"$OBJDIR$folder/${stock}$IMGEXT"		|| return 2
 	done
@@ -583,6 +586,19 @@ _clean()
 		$DEBUG $RM -- "$OBJDIR$theme/${size}/${to}$IMGEXT" \
 								|| return 2
 	done
+}
+
+
+#gmorim
+_gmorim()
+{
+	$DEBUG $GM "$@"
+	ret=$?
+	if [ $ret -eq 127 ]; then
+		$DEBUG $MAGICK "$@"
+		ret=$?
+	fi
+	return $ret
 }
 
 
