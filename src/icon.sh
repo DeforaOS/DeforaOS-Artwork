@@ -31,7 +31,7 @@ PROGNAME="icon.sh"
 SIZE="96x96"
 [ -f "../config.sh" ] && . "../config.sh"
 #executables
-CONVERT="convert -quiet"
+CONVERT="gm convert"
 DEBUG="_debug"
 INSTALL="install -m 0644"
 MKDIR="mkdir -m 0755 -p"
