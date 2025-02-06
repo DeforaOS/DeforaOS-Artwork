@@ -27,7 +27,7 @@
 #variables
 BGCOLOR="black"
 FGCOLOR="white"
-FONT="FontAwesome"
+FONT="Font Awesome 5 Free"
 ICONS="
 		actions/application-exit
 		actions/appointment-new
