@@ -592,10 +592,10 @@ _clean()
 #gmorim
 _gmorim()
 {
-	$DEBUG $GM "$@"
+	$DEBUG $MAGICK "$@"
 	ret=$?
 	if [ $ret -eq 127 ]; then
-		$DEBUG $MAGICK "$@"
+		$DEBUG $GM "$@"
 		ret=$?
 	fi
 	return $ret
